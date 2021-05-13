@@ -1,0 +1,649 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>머신러닝 파이프 라인</title><style>
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	text-indent: -1.7em;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, YuMincho, "Yu Mincho", "Hiragino Mincho ProN", "Hiragino Mincho Pro", "Songti TC", "Songti SC", "SimSun", "Nanum Myeongjo", NanumMyeongjo, Batang, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC', 'Noto Sans CJK KR'; }
+
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC', 'Noto Sans Mono CJK KR'; }
+
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, YuMincho, "Yu Mincho", "Hiragino Mincho ProN", "Hiragino Mincho Pro", "Songti TC", "Songti SC", "SimSun", "Nanum Myeongjo", NanumMyeongjo, Batang, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC', 'Noto Sans CJK KR'; }
+
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC', 'Noto Sans Mono CJK KR'; }
+
+.highlight-default {
+}
+.highlight-gray {
+	color: rgb(155,154,151);
+}
+.highlight-brown {
+	color: rgb(100,71,58);
+}
+.highlight-orange {
+	color: rgb(217,115,13);
+}
+.highlight-yellow {
+	color: rgb(223,171,1);
+}
+.highlight-teal {
+	color: rgb(15,123,108);
+}
+.highlight-blue {
+	color: rgb(11,110,153);
+}
+.highlight-purple {
+	color: rgb(105,64,165);
+}
+.highlight-pink {
+	color: rgb(173,26,114);
+}
+.highlight-red {
+	color: rgb(224,62,62);
+}
+.highlight-gray_background {
+	background: rgb(235,236,237);
+}
+.highlight-brown_background {
+	background: rgb(233,229,227);
+}
+.highlight-orange_background {
+	background: rgb(250,235,221);
+}
+.highlight-yellow_background {
+	background: rgb(251,243,219);
+}
+.highlight-teal_background {
+	background: rgb(221,237,234);
+}
+.highlight-blue_background {
+	background: rgb(221,235,241);
+}
+.highlight-purple_background {
+	background: rgb(234,228,242);
+}
+.highlight-pink_background {
+	background: rgb(244,223,235);
+}
+.highlight-red_background {
+	background: rgb(251,228,228);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(55, 53, 47, 0.6);
+	fill: rgba(55, 53, 47, 0.6);
+}
+.block-color-brown {
+	color: rgb(100,71,58);
+	fill: rgb(100,71,58);
+}
+.block-color-orange {
+	color: rgb(217,115,13);
+	fill: rgb(217,115,13);
+}
+.block-color-yellow {
+	color: rgb(223,171,1);
+	fill: rgb(223,171,1);
+}
+.block-color-teal {
+	color: rgb(15,123,108);
+	fill: rgb(15,123,108);
+}
+.block-color-blue {
+	color: rgb(11,110,153);
+	fill: rgb(11,110,153);
+}
+.block-color-purple {
+	color: rgb(105,64,165);
+	fill: rgb(105,64,165);
+}
+.block-color-pink {
+	color: rgb(173,26,114);
+	fill: rgb(173,26,114);
+}
+.block-color-red {
+	color: rgb(224,62,62);
+	fill: rgb(224,62,62);
+}
+.block-color-gray_background {
+	background: rgb(235,236,237);
+}
+.block-color-brown_background {
+	background: rgb(233,229,227);
+}
+.block-color-orange_background {
+	background: rgb(250,235,221);
+}
+.block-color-yellow_background {
+	background: rgb(251,243,219);
+}
+.block-color-teal_background {
+	background: rgb(221,237,234);
+}
+.block-color-blue_background {
+	background: rgb(221,235,241);
+}
+.block-color-purple_background {
+	background: rgb(234,228,242);
+}
+.block-color-pink_background {
+	background: rgb(244,223,235);
+}
+.block-color-red_background {
+	background: rgb(251,228,228);
+}
+.select-value-color-default { background-color: rgba(206,205,202,0.5); }
+.select-value-color-gray { background-color: rgba(155,154,151, 0.4); }
+.select-value-color-brown { background-color: rgba(140,46,0,0.2); }
+.select-value-color-orange { background-color: rgba(245,93,0,0.2); }
+.select-value-color-yellow { background-color: rgba(233,168,0,0.2); }
+.select-value-color-green { background-color: rgba(0,135,107,0.2); }
+.select-value-color-blue { background-color: rgba(0,120,223,0.2); }
+.select-value-color-purple { background-color: rgba(103,36,222,0.2); }
+.select-value-color-pink { background-color: rgba(221,0,129,0.2); }
+.select-value-color-red { background-color: rgba(255,0,26,0.2); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="5aa407bb-fc4c-4eb2-b801-455bb85af539" class="page sans"><header><div class="page-header-icon undefined"><span class="icon">🎐</span></div><h1 class="page-title">머신러닝 파이프 라인</h1></header><div class="page-body"><ul id="900ac901-edbb-41ca-be2b-ee9ac5a7fc8e" class="toggle"><li><details open=""><summary>1. <strong>머신러닝 파이프라인의 이해</strong></summary><p id="89ebb1a9-4501-4d40-b5db-90a02214bf0b" class="">eg) 헨리 포드의 자동차 조립 라인(컨베이어 벨트) : 제작시간을 12시간 → 3시간 단축시김으로 자동차가 대중화되었다.</p><p id="1f55334a-cc79-4a9e-99ee-293694088984" class="">
+</p><p id="9d989d0f-85f8-4312-a50e-c12d810b4a0c" class=""><strong>1-1. 머신러닝 프로젝트의 이점 </strong></p><p id="1f8adcfe-c021-4b37-bf64-d995b1e0f7b5" class="">즉, 파이프라인을 통해 얻는 이점은 🧚<mark class="highlight-blue"><strong>생산성 향상 , </strong></mark>🧚<mark class="highlight-blue"><strong>예측 가능한 품질 , </strong></mark>🧚<mark class="highlight-blue"><strong>장애 대응능력 향상</strong></mark>이다.</p><p id="1cb6a022-aaad-4627-9166-5607d524af83" class="">
+</p><p id="22f02848-5c3f-497b-9af8-acdb0a0dbc44" class=""><strong>1-2. 머신러닝 파이프라인의 필요성</strong></p><ul id="8b933d62-2816-460f-98ef-5743216c2a02" class="bulleted-list"><li>대부분의 회사에서 머신러닝 모델 배포는 쉬워졌지만, 모델을 자속적으로 유지하는데 비용이 매우 크게 든다.</li></ul><ul id="fac2cd69-df7a-4f87-9242-b75250631695" class="bulleted-list"><li>기술부채(미래 오류들)를 줄이기 위한 노력 : <strong>리팩토링, 종속성 제거, 단위 테스트, API 강화, 미사용 코드 삭제, 문서화</strong> <p id="83f23c4e-bea2-4017-b611-7f435ee7f5d4" class=""><mark class="highlight-red">그러나! 머신러닝 시스템에서는 기존의 방식으로 기술 부채 제거가 쉽지 않다.</mark></p><p id="0707860d-4713-434c-a481-c888a93466cd" class="">
+</p></li></ul></details></li></ul><p id="18447dc0-e7cd-480d-b6d5-5a3735a85f26" class="">
+</p><ul id="ba41db2d-d303-4f80-b7a0-e93d964e0f69" class="toggle"><li><details open=""><summary><strong>2.머신러닝 문제의 특징 </strong></summary><ul id="c259733f-1868-4d11-b1c4-ada59db61a33" class="toggle"><li><details open=""><summary><strong>2-1. 쉬운/어려운 머신러닝 문제</strong></summary><ul id="99f8b9cb-0a65-4e9a-b4c3-e427203eebcd" class="bulleted-list"><li>쉬운 머신러닝 문제 <p id="e5203bf8-951d-4328-9765-4569c10f06f5" class="">-데이터 변화가 천천히 일어남 </p><p id="3b0948fa-2ae6-43b9-a9c7-c5c241702441" class="">-재학습이 더 많은 데이터로 성능 개선 하는 경우 &amp; 소프트웨어나 환경 변화하는 경우에 일어남</p><p id="8132bb77-0c75-4abb-8e44-a44bd3e9c3c0" class="">-라벨링이 수집한 데이터나 크라우드 소싱 기반으로 이뤄짐</p><p id="57dc6b01-b48a-4705-b134-2e08091d065f" class="">
+</p></li></ul><ul id="004d08ce-b933-408e-aa6a-215a1d9f4e53" class="bulleted-list"><li>어려운 머신러닝 문제<p id="93a03e38-8956-4d19-94f6-510a13c23441" class=""> -<mark class="highlight-blue">데이터 변화가 빠르</mark>게 일어남</p><p id="5c42de84-6d06-4ec5-be9f-6838b401e0ed" class=""> -<mark class="highlight-blue">모델 성능 저하</mark>로 인한 재학습이 일어남</p><p id="3ef34ac4-8a4a-48c0-8273-b2276afdac2a" class=""> - 라벨링이 <mark class="highlight-blue">직접적인 피드백 데이터를 기반</mark>으로 함( 추천 시스템)</p><p id="f4e7ad63-dab6-40ec-8b46-8cfcb21ab550" class="">
+</p></li></ul></details></li></ul><p id="7697d548-a585-4a9d-8660-76ea6c5f0c85" class="">
+</p><ul id="94c01aed-4c18-475f-b406-9a12aa1980d6" class="toggle"><li><details open=""><summary><strong>2-2. 머신러닝 프로그래밍 문제의 특징</strong></summary><figure id="b9d56b13-9af5-44a8-a1a3-88d249c0354e" class="image"><a href="%E1%84%86%E1%85%A5%E1%84%89%E1%85%B5%E1%86%AB%E1%84%85%E1%85%A5%E1%84%82%E1%85%B5%E1%86%BC%20%E1%84%91%E1%85%A1%E1%84%8B%E1%85%B5%E1%84%91%E1%85%B3%20%E1%84%85%E1%85%A1%E1%84%8B%E1%85%B5%E1%86%AB%20b9d56b139af544a8a1a388d249c0354e/_2021-05-13__2.17.52.png"><img style="width:856px" src="%E1%84%86%E1%85%A5%E1%84%89%E1%85%B5%E1%86%AB%E1%84%85%E1%85%A5%E1%84%82%E1%85%B5%E1%86%BC%20%E1%84%91%E1%85%A1%E1%84%8B%E1%85%B5%E1%84%91%E1%85%B3%20%E1%84%85%E1%85%A1%E1%84%8B%E1%85%B5%E1%86%AB%20b9d56b139af544a8a1a388d249c0354e/_2021-05-13__2.17.52.png"/></a></figure><ul id="95768373-e467-4e8c-9623-712820de12c4" class="bulleted-list"><li>대아터셋, 모델에서 이상치 탐색할 수 있어야 한다.</li></ul><ul id="dca9468d-519c-4466-bda3-dbdc3dbdb1c8" class="bulleted-list"><li>표준화된 방식으로 모델을 평가할 수 있어야 한다.</li></ul><ul id="6263ed17-857e-496d-bf43-aae6931ef0bf" class="bulleted-list"><li>아티팩트의 형상관리가 가능해야한다. </li></ul></details></li></ul><p id="6d478eb5-3efd-4b3c-90fe-4644b906f691" class="">
+</p><ul id="7e2b7483-7e58-4bc0-adaf-ec1e6af99227" class="toggle"><li><details open=""><summary><strong>2-3. 개발 프로세스</strong></summary><p id="414afd46-b2c1-48ac-8e33-25a5c90f1c6f" class="">ML은 본질적으로 실험이기 때문에 <strong>다양한 시도(Feature , 알고리즘, 모델링, 파라미터)</strong>를 하며</p><p id="b265e090-e35f-4cc3-a078-3f3f068d6aaf" class="">빠르게 문제점을 찾아야 한다.</p><p id="7abe7708-eee3-4d9a-9de5-a3b945bf7751" class="">이 때, 무엇이 효과있었는 지, 없었는 지 추적해서 관리해야한다. 이를 위해 코드 재사용을 최대한 가능케하여 <strong>재현성을 계속해서 유지하며 실험</strong>하는 것기 과제이다.</p></details></li></ul><p id="882585ff-c2fc-4034-a45d-8d193f1e8b31" class="">
+</p><ul id="60865cbf-dd1d-4600-b54b-0b9cd25bc807" class="toggle"><li><details open=""><summary><strong>2-4. 테스팅 방법 / 배포</strong></summary><ul id="9c759bac-6f83-46ae-b65a-39969a434606" class="bulleted-list"><li>ML 시스템 테스트는 SW 시스템 테스트보다 어렵다. 잘동작하는 지 확인하는 게 명확하지 않다.</li></ul><ul id="55b3f36c-ad64-4381-bab2-1ebacb1a85b1" class="bulleted-list"><li>배포는 오프라인에서 훈련된 모델 구축하는 것만큼 간단치 않다.</li></ul><ul id="9a36d7a0-c8a0-45d6-94a4-a869a7358b5e" class="bulleted-list"><li>트리거 포인트는? 여러군데이다. ML 모델</li></ul><p id="cff4db6c-06d6-418b-a249-b953636ed624" class="">
+</p></details></li></ul><ul id="aa03ccc9-25c2-4abf-bbb7-a78b43b7632b" class="toggle"><li><details open=""><summary><strong>2-5. 프로덕션</strong></summary><p id="47814ee4-5398-48ab-8677-e2c21f2de4fd" class="">ML모델은 코딩뿐만 아니라 지속적으로 발전하는 데이터 프로파일 때문에 성능이 저하될 수있다. 따라서 데이터의 통계치를 추적하고 모델의 온라인 성능을 모니터링해 예상치를 벗어날 때 알림을 보내거나 롤백해야한다.</p></details></li></ul><p id="22b6ed41-dcce-49a3-9a64-2b93d58ae60b" class="">
+</p><p id="ec5bb4f2-96be-464f-b278-6873031c8658" class="">
+</p></details></li></ul><p id="8ada1f14-5912-4148-a181-5320392fe5dc" class="">
+</p><ul id="c48e5e62-df73-40c6-a5e7-05c4e0ac1ce6" class="toggle"><li><details open=""><summary><strong>3. MLOps의 핵심 문제</strong></summary><ul id="4f633bfe-5407-45b1-9862-575c4ee9ee08" class="toggle"><li><details open=""><summary><strong>3-1. 모델 학습/ 배포 트리거</strong></summary><figure id="83f219c4-2016-483b-ac62-81cb813dbd23" class="image"><a href="%E1%84%86%E1%85%A5%E1%84%89%E1%85%B5%E1%86%AB%E1%84%85%E1%85%A5%E1%84%82%E1%85%B5%E1%86%BC%20%E1%84%91%E1%85%A1%E1%84%8B%E1%85%B5%E1%84%91%E1%85%B3%20%E1%84%85%E1%85%A1%E1%84%8B%E1%85%B5%E1%86%AB%20b9d56b139af544a8a1a388d249c0354e/_2021-05-13__3.32.30.png"><img style="width:680px" src="%E1%84%86%E1%85%A5%E1%84%89%E1%85%B5%E1%86%AB%E1%84%85%E1%85%A5%E1%84%82%E1%85%B5%E1%86%BC%20%E1%84%91%E1%85%A1%E1%84%8B%E1%85%B5%E1%84%91%E1%85%B3%20%E1%84%85%E1%85%A1%E1%84%8B%E1%85%B5%E1%86%AB%20b9d56b139af544a8a1a388d249c0354e/_2021-05-13__3.32.30.png"/></a></figure><p id="06322a98-7243-4fb7-8265-c66dfb175e0b" class="">
+</p></details></li></ul><p id="21574a92-3758-4807-b5ff-387f634db3a7" class="">
+</p><ul id="42aacb45-4fba-405c-a4ad-7cf4b19683b4" class="toggle"><li><details open=""><summary><strong>3-2. 지속적 통합(CI) &amp; 지속적 배포(CD) &amp; 지속적 학습(CT)</strong></summary><p id="33316eff-e900-4587-96d0-7457d84bfbca" class="">지속적 통합(Continuous Integration)</p><p id="9cb132c3-401b-4c1a-a1b9-46a9f02d99b5" class="">지속적 배포(Continuous Deployment)</p><p id="d84ebbf6-07d6-495b-b85d-7ab8c4bf745e" class=""><strong><mark class="highlight-blue">지속적 학습(Continuous Training) : 데이터 파이프 라인의 자동화 및 기술 부채의 해소 필요</mark></strong></p><p id="1dee6e00-de60-43f0-a14d-708cfbee9dd6" class="">
+</p></details></li></ul></details></li></ul><p id="d6f68cac-1d19-48d2-9603-0488f9de3bac" class="">
+</p><ul id="c239fa87-03ea-4db4-8b39-5ce794b7dde3" class="toggle"><li><details open=""><summary><strong>4. MLOps 성숙도 레벨</strong></summary><ul id="13d5f87a-3466-40a3-b346-40034f77b663" class="toggle"><li><details open=""><summary><strong>4-1. 성숙도 레벨0</strong></summary><ul id="24be7df3-aca6-4df1-937c-18a85253af1b" class="bulleted-list"><li>수동, 스크립트 중심, 대화식(Interactive) 프로세스 _ Colab 으로 띡..</li></ul><ul id="1590a16a-4450-40a8-b107-b1858597ee9c" class="bulleted-list"><li>ML과 운영의 분리</li></ul><ul id="caa3e954-c8f8-454f-aa69-5093e445c4bc" class="bulleted-list"><li>드문 릴리즈 반복</li></ul><ul id="9e57ffb8-b591-46b6-bf0c-66dd1e4213b1" class="bulleted-list"><li>CI 없음</li></ul><ul id="82143147-9679-4434-82ea-5ec308f2157d" class="bulleted-list"><li>CD 없음</li></ul><ul id="54240736-6d46-4893-9be7-a6c0590c4e9f" class="bulleted-list"><li>배포는 예측 서비스를 의미</li></ul><ul id="adb242ca-fd07-4fa8-8eef-47ec4d08026d" class="bulleted-list"><li>Active 성능 모니터링 부족<figure id="2e02fcd7-0fb1-4c6c-adee-3fe2ab263e09" class="image"><a href="%E1%84%86%E1%85%A5%E1%84%89%E1%85%B5%E1%86%AB%E1%84%85%E1%85%A5%E1%84%82%E1%85%B5%E1%86%BC%20%E1%84%91%E1%85%A1%E1%84%8B%E1%85%B5%E1%84%91%E1%85%B3%20%E1%84%85%E1%85%A1%E1%84%8B%E1%85%B5%E1%86%AB%20b9d56b139af544a8a1a388d249c0354e/_2021-05-13__3.43.37.png"><img style="width:1054px" src="%E1%84%86%E1%85%A5%E1%84%89%E1%85%B5%E1%86%AB%E1%84%85%E1%85%A5%E1%84%82%E1%85%B5%E1%86%BC%20%E1%84%91%E1%85%A1%E1%84%8B%E1%85%B5%E1%84%91%E1%85%B3%20%E1%84%85%E1%85%A1%E1%84%8B%E1%85%B5%E1%86%AB%20b9d56b139af544a8a1a388d249c0354e/_2021-05-13__3.43.37.png"/></a></figure></li></ul></details></li></ul><p id="3a190cff-bc76-499a-8bfb-21fdb60b5cc6" class="">
+</p><ul id="9153f062-a049-43d2-b28a-94d19248830b" class="toggle"><li><details open=""><summary>4-2. 성숙도 레벨1</summary><ul id="4fd44aec-1075-45be-a6fb-8396cfafd34b" class="bulleted-list"><li>빠른 실험</li></ul><ul id="08fb1f85-bcf4-49ff-87a3-db5b45800f9f" class="bulleted-list"><li>프로덕션 모델의 CT</li></ul><ul id="c1caadfa-7a00-4541-971f-a1972b4e5ba5" class="bulleted-list"><li>실험 운영 환경의 조화</li></ul><ul id="4581b872-629d-4a9e-b4d4-33bb92e4f597" class="bulleted-list"><li>구성 요소 및 파이프라인을 위한 모듈화된 코드</li></ul><ul id="c83524ce-2e1a-4566-94b3-3a1ad95c51f1" class="bulleted-list"><li>지속적인 모델 제공</li></ul><ul id="961c1aca-ca55-4239-aed9-428c38468083" class="bulleted-list"><li>파이프라인 배포<figure id="694d8dfa-56e9-4743-9f8e-00e1ba8e7ad9" class="image"><a href="%E1%84%86%E1%85%A5%E1%84%89%E1%85%B5%E1%86%AB%E1%84%85%E1%85%A5%E1%84%82%E1%85%B5%E1%86%BC%20%E1%84%91%E1%85%A1%E1%84%8B%E1%85%B5%E1%84%91%E1%85%B3%20%E1%84%85%E1%85%A1%E1%84%8B%E1%85%B5%E1%86%AB%20b9d56b139af544a8a1a388d249c0354e/_2021-05-13__3.44.58.png"><img style="width:1072px" src="%E1%84%86%E1%85%A5%E1%84%89%E1%85%B5%E1%86%AB%E1%84%85%E1%85%A5%E1%84%82%E1%85%B5%E1%86%BC%20%E1%84%91%E1%85%A1%E1%84%8B%E1%85%B5%E1%84%91%E1%85%B3%20%E1%84%85%E1%85%A1%E1%84%8B%E1%85%B5%E1%86%AB%20b9d56b139af544a8a1a388d249c0354e/_2021-05-13__3.44.58.png"/></a></figure></li></ul><p id="4ae4138b-9e70-4ae6-ba14-df616209fed6" class="">
+</p><p id="2abe1351-ee0e-485a-8836-78330b54b8bb" class="">
+</p></details></li></ul><ul id="a402ac30-0067-400b-a505-894bd81ec82c" class="toggle"><li><details open=""><summary>4-3. 성숙도 레벨2</summary><ul id="b26141fd-413d-4775-aa9d-686ef0a4f712" class="bulleted-list"><li>Production에서 파이프라인을 빠르고 안정적으로 업데이트하려면 자동화된 CI/CD 시스템이 필요하다.</li></ul><ul id="3ae528a6-6f43-4ea0-a6eb-c0984b0b6b0d" class="bulleted-list"><li>이 자동화된 CI/CD 시스템을 통해 데이터 과학자는 Feature Engineering, 모델 아키텍처 및 하이퍼 파라미터에 대한 새로운 아이디어를 신속하게 탐색할 수 있다.<figure id="9dae13b1-2f0d-4437-bfd4-843e7e797599" class="image"><a href="%E1%84%86%E1%85%A5%E1%84%89%E1%85%B5%E1%86%AB%E1%84%85%E1%85%A5%E1%84%82%E1%85%B5%E1%86%BC%20%E1%84%91%E1%85%A1%E1%84%8B%E1%85%B5%E1%84%91%E1%85%B3%20%E1%84%85%E1%85%A1%E1%84%8B%E1%85%B5%E1%86%AB%20b9d56b139af544a8a1a388d249c0354e/_2021-05-13__3.48.29.png"><img style="width:1037px" src="%E1%84%86%E1%85%A5%E1%84%89%E1%85%B5%E1%86%AB%E1%84%85%E1%85%A5%E1%84%82%E1%85%B5%E1%86%BC%20%E1%84%91%E1%85%A1%E1%84%8B%E1%85%B5%E1%84%91%E1%85%B3%20%E1%84%85%E1%85%A1%E1%84%8B%E1%85%B5%E1%86%AB%20b9d56b139af544a8a1a388d249c0354e/_2021-05-13__3.48.29.png"/></a></figure></li></ul></details></li></ul></details></li></ul><p id="ee7b91f7-8f16-4c02-ac3a-ae529e3a0042" class="">
+</p><p id="811faeca-0d18-4c3f-a762-bbdd47224af3" class="">
+</p></div></article></body></html>
