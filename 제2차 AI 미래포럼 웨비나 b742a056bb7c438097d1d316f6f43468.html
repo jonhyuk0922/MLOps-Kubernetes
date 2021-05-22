@@ -1,0 +1,651 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>제2차 AI 미래포럼 웨비나 </title><style>
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	text-indent: -1.7em;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, YuMincho, "Yu Mincho", "Hiragino Mincho ProN", "Hiragino Mincho Pro", "Songti TC", "Songti SC", "SimSun", "Nanum Myeongjo", NanumMyeongjo, Batang, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC', 'Noto Sans CJK KR'; }
+
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC', 'Noto Sans Mono CJK KR'; }
+
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, YuMincho, "Yu Mincho", "Hiragino Mincho ProN", "Hiragino Mincho Pro", "Songti TC", "Songti SC", "SimSun", "Nanum Myeongjo", NanumMyeongjo, Batang, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC', 'Noto Sans CJK KR'; }
+
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC', 'Noto Sans Mono CJK KR'; }
+
+.highlight-default {
+}
+.highlight-gray {
+	color: rgb(155,154,151);
+}
+.highlight-brown {
+	color: rgb(100,71,58);
+}
+.highlight-orange {
+	color: rgb(217,115,13);
+}
+.highlight-yellow {
+	color: rgb(223,171,1);
+}
+.highlight-teal {
+	color: rgb(15,123,108);
+}
+.highlight-blue {
+	color: rgb(11,110,153);
+}
+.highlight-purple {
+	color: rgb(105,64,165);
+}
+.highlight-pink {
+	color: rgb(173,26,114);
+}
+.highlight-red {
+	color: rgb(224,62,62);
+}
+.highlight-gray_background {
+	background: rgb(235,236,237);
+}
+.highlight-brown_background {
+	background: rgb(233,229,227);
+}
+.highlight-orange_background {
+	background: rgb(250,235,221);
+}
+.highlight-yellow_background {
+	background: rgb(251,243,219);
+}
+.highlight-teal_background {
+	background: rgb(221,237,234);
+}
+.highlight-blue_background {
+	background: rgb(221,235,241);
+}
+.highlight-purple_background {
+	background: rgb(234,228,242);
+}
+.highlight-pink_background {
+	background: rgb(244,223,235);
+}
+.highlight-red_background {
+	background: rgb(251,228,228);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(55, 53, 47, 0.6);
+	fill: rgba(55, 53, 47, 0.6);
+}
+.block-color-brown {
+	color: rgb(100,71,58);
+	fill: rgb(100,71,58);
+}
+.block-color-orange {
+	color: rgb(217,115,13);
+	fill: rgb(217,115,13);
+}
+.block-color-yellow {
+	color: rgb(223,171,1);
+	fill: rgb(223,171,1);
+}
+.block-color-teal {
+	color: rgb(15,123,108);
+	fill: rgb(15,123,108);
+}
+.block-color-blue {
+	color: rgb(11,110,153);
+	fill: rgb(11,110,153);
+}
+.block-color-purple {
+	color: rgb(105,64,165);
+	fill: rgb(105,64,165);
+}
+.block-color-pink {
+	color: rgb(173,26,114);
+	fill: rgb(173,26,114);
+}
+.block-color-red {
+	color: rgb(224,62,62);
+	fill: rgb(224,62,62);
+}
+.block-color-gray_background {
+	background: rgb(235,236,237);
+}
+.block-color-brown_background {
+	background: rgb(233,229,227);
+}
+.block-color-orange_background {
+	background: rgb(250,235,221);
+}
+.block-color-yellow_background {
+	background: rgb(251,243,219);
+}
+.block-color-teal_background {
+	background: rgb(221,237,234);
+}
+.block-color-blue_background {
+	background: rgb(221,235,241);
+}
+.block-color-purple_background {
+	background: rgb(234,228,242);
+}
+.block-color-pink_background {
+	background: rgb(244,223,235);
+}
+.block-color-red_background {
+	background: rgb(251,228,228);
+}
+.select-value-color-default { background-color: rgba(206,205,202,0.5); }
+.select-value-color-gray { background-color: rgba(155,154,151, 0.4); }
+.select-value-color-brown { background-color: rgba(140,46,0,0.2); }
+.select-value-color-orange { background-color: rgba(245,93,0,0.2); }
+.select-value-color-yellow { background-color: rgba(233,168,0,0.2); }
+.select-value-color-green { background-color: rgba(0,135,107,0.2); }
+.select-value-color-blue { background-color: rgba(0,120,223,0.2); }
+.select-value-color-purple { background-color: rgba(103,36,222,0.2); }
+.select-value-color-pink { background-color: rgba(221,0,129,0.2); }
+.select-value-color-red { background-color: rgba(255,0,26,0.2); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="7fbd849f-c8fc-4c99-913e-449a5e522dc8" class="page sans"><header><img class="page-cover-image" src="https://www.notion.so/images/page-cover/woodcuts_1.jpg" style="object-position:center 90%"/><div class="page-header-icon page-header-icon-with-cover"><span class="icon">👤</span></div><h1 class="page-title">제2차 AI 미래포럼 웨비나 </h1></header><div class="page-body"><p id="8da9e5df-a7bc-4895-8f11-ff098ffdf5e4" class="">210513 인공지능의 기대와 현실</p><p id="9faf7a9f-0e13-45cc-97fb-7c9df6eaa35e" class="">
+<mark class="highlight-orange"><strong>기조연설 김윤 SKT CTO</strong></mark></p><ul id="a034c78f-c2dc-4a0d-9374-429d6f8b1e6b" class="toggle"><li><details open=""><summary>AI의 실상과 허상: Are we solving the right problems with AI?</summary><figure id="b742a056-bb7c-4380-97d1-d316f6f43468" class="image"><a href="%E1%84%8C%E1%85%A62%E1%84%8E%E1%85%A1%20AI%20%E1%84%86%E1%85%B5%E1%84%85%E1%85%A2%E1%84%91%E1%85%A9%E1%84%85%E1%85%A5%E1%86%B7%20%E1%84%8B%E1%85%B0%E1%84%87%E1%85%B5%E1%84%82%E1%85%A1%20b742a056bb7c438097d1d316f6f43468/_2021-05-13__10.10.01.png"><img style="width:1197px" src="%E1%84%8C%E1%85%A62%E1%84%8E%E1%85%A1%20AI%20%E1%84%86%E1%85%B5%E1%84%85%E1%85%A2%E1%84%91%E1%85%A9%E1%84%85%E1%85%A5%E1%86%B7%20%E1%84%8B%E1%85%B0%E1%84%87%E1%85%B5%E1%84%82%E1%85%A1%20b742a056bb7c438097d1d316f6f43468/_2021-05-13__10.10.01.png"/></a></figure><p id="cfb77181-1c81-4535-9671-24c3ccbd9fa5" class="">
+</p><p id="f07cce7d-c0f1-4491-90c3-34dc33cc2c78" class="">Q. 어떻게 하면 인간에게 이로운 인공지능을 만들 수 있을까? 라는 질문에서 출발한다.</p><p id="700aa728-4cd7-48b9-8248-eb1d4b99b33f" class="">
+</p><p id="59341326-7774-4dce-bea2-959e10f2416a" class="">1.AI Design. </p><ul id="842a9de1-c68b-456e-8d7f-fd1a680fd456" class="bulleted-list"><li>Problem Definition  : 궁극적으로 &#x27;더 나은 나&#x27;를 실현하는데 기여하는 &#x27;디지털 동반자&#x27; <p id="50234f42-1eab-4b57-a083-00fac15caa1f" class="">정말 멋진 문제들이 AI 를 기다리고 있다. eg) 정신병, 인성 등</p></li></ul><p id="ef24e776-f712-4192-8d52-2e7e27547124" class="">2. Evaluation Methodologies: Are we measyrung what relly matters?</p><ul id="229d1694-f761-4410-93e9-5588b61037c4" class="bulleted-list"><li>Example: Error Rate and Quality <p id="6876c792-b453-430d-b304-9f42a0d08f77" class="">단어 인식도는 8년간 꾸준히 정확도가 올라 92% 이상으로 올랐지만, 상황을 이해하는 건 별개이다.</p></li></ul><ul id="7972dd9d-ef1b-428e-a94d-5d2ba5ef92c8" class="bulleted-list"><li>Quality Metrics: Quotes from a &#x27;Comete&#x27;<p id="4dc15fcd-6696-4db7-94dd-adb46fad005e" class="">모든 오류는 동일하게 취급되선 않된다. </p><p id="019346bb-e87d-4f6e-aea4-1f9d5d695c53" class="">SOTA가 잘 작동하지만 메시한 셋에서도 잘 작동해야한다. (테스트셋의 약점을 파악해야한다)</p></li></ul><p id="0a29bdfe-822d-468e-9013-7cedb0fd271a" class="">
+</p><p id="7b374768-7410-4b20-b455-58265b585ce4" class="">3. User Experience Design: Do we think holistically about the best user experience with AI?</p><p id="a75d7633-ac36-4004-bb2a-3ec7aef92ba4" class="">애플의 예시, 유저 경험이 삶에 공기처럼 스며들게 하자. (AI만이 쓰이는 건 아니다.)</p><p id="a7b7798a-e945-49ae-90c3-a74ea3aaa73b" class="">
+</p><p id="f7106b98-b5fb-49ff-919a-8729d1bdc397" class="">4. Ai&#x27;s Ultimate Destination</p><p id="0f989290-e093-4e32-bde4-fa1c1784e6a6" class="">SDGs 좋은 문제인데 AI 적용하기가 힘들다. </p><p id="0230b043-7637-46c3-a546-d4b862f4cab8" class="">좋은 곳에 쓰일 수도 있지만, 범죄에 사용될 수도 있다.</p><p id="d5bc91e2-7b4f-4b3e-8122-0a64f4be64bc" class="">SKT NUGU는 어르신들에게 돌봄 서비스 제공하면서 수십분의 생명을 구했다.</p><p id="d0345566-90b0-43ff-b124-4df4a4e74b78" class=""><strong>#SK - KAKAO 혼잡도 API 어디서 볼수있지</strong></p><p id="802bdb42-12be-444c-802a-768a1533a520" class="">
+</p><p id="f17a831c-904d-42c7-bd95-969798c4f579" class=""><strong>인간뿐만아니라 환경까지 생각해야한다.</strong></p></details></li></ul><p id="73c5deb2-d066-4d91-b5d3-b6e7cf2d8705" class="">
+</p><p id="2bf1d1be-54d7-4e13-86b9-b9b592661822" class=""><mark class="highlight-orange"><strong>오순영 한컴인텔리전스 CTO</strong></mark></p><ul id="9373cad9-1061-433c-9a6c-ff8ac9697eca" class="toggle"><li><details open=""><summary> 주제1 AI 품질을 SW 관점에서 보다</summary><p id="0eebf3c0-4115-49d0-a110-4bce2bcb387f" class=""><span style="border-bottom:0.05em solid"><strong>소</strong></span>프트웨어가 <span style="border-bottom:0.05em solid"><strong>세</strong></span>상을<span style="border-bottom:0.05em solid"> </span><span style="border-bottom:0.05em solid"><strong>지</strong></span>배한다.</p><p id="7feaeed7-8638-4eb3-a779-c941a8a74752" class="">인공지능 학습용 데이터 품질 가이드라인 검색해보면 정말 잘 정리되어있다.</p><figure id="da8ddde7-081d-4816-95d5-76e85bb27778" class="image"><a href="%E1%84%8C%E1%85%A62%E1%84%8E%E1%85%A1%20AI%20%E1%84%86%E1%85%B5%E1%84%85%E1%85%A2%E1%84%91%E1%85%A9%E1%84%85%E1%85%A5%E1%86%B7%20%E1%84%8B%E1%85%B0%E1%84%87%E1%85%B5%E1%84%82%E1%85%A1%20b742a056bb7c438097d1d316f6f43468/_2021-05-13__10.32.39.png"><img style="width:1336px" src="%E1%84%8C%E1%85%A62%E1%84%8E%E1%85%A1%20AI%20%E1%84%86%E1%85%B5%E1%84%85%E1%85%A2%E1%84%91%E1%85%A9%E1%84%85%E1%85%A5%E1%86%B7%20%E1%84%8B%E1%85%B0%E1%84%87%E1%85%B5%E1%84%82%E1%85%A1%20b742a056bb7c438097d1d316f6f43468/_2021-05-13__10.32.39.png"/></a></figure><p id="4511816d-b1a0-4794-8b37-396efb7ebd26" class="">
+</p><ul id="9a80f880-a22f-4e52-adc0-fe1413373a2c" class="bulleted-list"><li>이루다 챗봇과 같은 경우 , 개발과정 체크리스트가 포함되어있다면 어땠을까?</li></ul><ul id="b567a7b8-e600-4e3d-ae15-c4adf56a39b3" class="bulleted-list"><li>데이터의 품질을 위해 데이터 라벨링 작업자와 검수자의 분리 필요.</li></ul><ul id="cac93426-f85f-4934-b092-25739ab1fe6c" class="bulleted-list"><li>학습용 데이터도 버전 관리가 필요하다. (CPU&amp;GPU 아키텍쳐별로 다를 수도 있다.)</li></ul></details></li></ul><p id="305e6543-8e1d-4e9f-b237-594801b3adfe" class="">                                                
+<mark class="highlight-orange"><strong>김승일 모두의연구소 대표</strong></mark></p><ul id="555da4ce-c386-4ff1-8bcc-b3993894cce8" class="toggle"><li><details open=""><summary>주제2 AI 리터러시: 사회적 격차 해소를 위한 노력    </summary><ul id="e06048f0-874b-4de6-b8d5-c24d7d1aa2bf" class="bulleted-list"><li><strong>새로운 기술은 부를 재편한다.</strong><p id="3f37c875-838f-44ae-a16d-bd55f7fff826" class="">세대간 격차뿐 아니라, MZ 내에서도 기술력에 대한 격차가 부의 격차를 만들 수 있다.</p><p id="4f8d7d3b-2b61-466b-9628-49cb36978d63" class="">지역간 격차 : 인구의 20%가 사는 서울에 인공지능 교육의 80%가 있다. </p><p id="7c57fdf2-183b-4501-84e0-41b4e0ce3fc1" class="">→ 온라인? 한계가 명확하다. 오프라인만의 장점이 있다.</p><p id="b7ab0631-053c-411a-881f-6eba5214951b" class="">그래서 스스로 공부하고 지역 기업의 과제를 해결하며 성장하는 방식 고안! </p></li></ul></details></li></ul><p id="113c9edc-72aa-4585-9799-2ed9c01c016d" class="">
+</p><p id="1d20d541-5112-4a03-90c7-2ec1b6c1aa40" class=""><mark class="highlight-orange"><strong>김휘영 연세대 교수</strong></mark></p><ul id="a5b3bb70-9553-48db-aac2-5906d5c1e742" class="toggle"><li><details open=""><summary>주제3 AI가 병원에 가면 의료인이 될 수 있을까?    </summary><p id="93dad631-2220-4a17-8ef0-24ae9cc51e0d" class="">16년 JAMA에 구글 공학자들이 당뇨성 망막변증 예측 논문을 실었다. (알파고 난리났을 시점)</p><ul id="6ad07545-124a-4b8e-af31-e6816ee3a7b4" class="bulleted-list"><li>인공지능이 의사를 대체하지 못하는 이유. (feat. 비둘기, 개)<p id="ca3cf270-cbf0-4e0b-9ddc-d5a1bd653cae" class="">예측은 잘 하지만 이유를 모른다.</p><p id="09bc550b-6158-4793-be14-d97d908d5220" class="">병원별 데이터에 학습되다보니 다른 병원 혹, 다른 병에는 잘 적용이 안된다.</p></li></ul><ul id="979e178a-08b3-4715-8996-8863246eedf4" class="bulleted-list"><li>AI 의료기기 허가 제도가 까다롭다. <p id="92e3a39e-634d-4118-9ffd-eb8ada4966cd" class="">해결책이 필요하다. (제도적 지원, 병원의 투자, 의학자와 공학자의 소통 필요)</p><figure id="f92eae12-8b66-48ac-b681-3e423804c197" class="image"><a href="%E1%84%8C%E1%85%A62%E1%84%8E%E1%85%A1%20AI%20%E1%84%86%E1%85%B5%E1%84%85%E1%85%A2%E1%84%91%E1%85%A9%E1%84%85%E1%85%A5%E1%86%B7%20%E1%84%8B%E1%85%B0%E1%84%87%E1%85%B5%E1%84%82%E1%85%A1%20b742a056bb7c438097d1d316f6f43468/_2021-05-13__11.12.45.png"><img style="width:1338px" src="%E1%84%8C%E1%85%A62%E1%84%8E%E1%85%A1%20AI%20%E1%84%86%E1%85%B5%E1%84%85%E1%85%A2%E1%84%91%E1%85%A9%E1%84%85%E1%85%A5%E1%86%B7%20%E1%84%8B%E1%85%B0%E1%84%87%E1%85%B5%E1%84%82%E1%85%A1%20b742a056bb7c438097d1d316f6f43468/_2021-05-13__11.12.45.png"/></a></figure><figure id="6f2bf13d-04cd-4ee4-9fed-765c624c7519" class="image"><a href="%E1%84%8C%E1%85%A62%E1%84%8E%E1%85%A1%20AI%20%E1%84%86%E1%85%B5%E1%84%85%E1%85%A2%E1%84%91%E1%85%A9%E1%84%85%E1%85%A5%E1%86%B7%20%E1%84%8B%E1%85%B0%E1%84%87%E1%85%B5%E1%84%82%E1%85%A1%20b742a056bb7c438097d1d316f6f43468/_2021-05-13__11.17.17.png"><img style="width:1309px" src="%E1%84%8C%E1%85%A62%E1%84%8E%E1%85%A1%20AI%20%E1%84%86%E1%85%B5%E1%84%85%E1%85%A2%E1%84%91%E1%85%A9%E1%84%85%E1%85%A5%E1%86%B7%20%E1%84%8B%E1%85%B0%E1%84%87%E1%85%B5%E1%84%82%E1%85%A1%20b742a056bb7c438097d1d316f6f43468/_2021-05-13__11.17.17.png"/></a></figure></li></ul><p id="7addc289-878b-4584-9c22-bde7dede46df" class="">
+</p></details></li></ul><p id="a06dc8f3-864d-4dfc-8dd8-570bda97cc1d" class="">        
+
+11:25 ~ 12:05 패널토의 및 질의: 진행 임우형 LG AI연구원 상무
+                          - AI 기대와 현실 간격 해소를 위해 필요한 노력 -
+
+패널(가나다순):
+김재완 삼성디스플레이 상무
+김재원 엘리스 대표
+이주열 LG CNS 상무
+장정열 에프에이솔루션 대표
+정규환 뷰노 CTO</p><p id="cd2a9aab-b9b2-4f82-ab55-2724c31d73ec" class="">
+</p><p id="b4465751-beab-4d9b-b25c-9e2ec022a902" class=""><mark class="highlight-orange"><strong>ML-Ops  :  실험적인 기계 학습 모델을 프로덕션 웹 시스템으로 가져 오는 프로세스</strong></mark></p><ul id="1781d2e8-ba32-4239-b21b-e630ac79ce8b" class="toggle"><li><details open=""><summary>ML Ops 가 적용되기 위한 조건들</summary><ul id="a8dd3a4e-3d14-4ccc-9454-1c8024d83846" class="bulleted-list"><li>개발에서 성능과 적용할 떄 성능의 차이를 어떻게 미리 알 수 있을까?</li></ul><ul id="fb363f48-38ec-4a89-8c47-74fdbacac601" class="bulleted-list"><li>제조업에서도  장비가 바뀌다 보니까 학습망이나 학습데이터를 업데이터 해야하는데, <p id="abed0fb5-4160-4bc1-9b5d-4f8348909e51" class="">제조라인이 수백대라서 적용하기 어렵다. 주기가 빈번한 경우는 수동 대응이 어렵다보니 <mark class="highlight-red">학</mark><mark class="highlight-red"><strong>습 자동화 기술</strong></mark>을 검토하고있다.</p></li></ul><p id="8500f470-a54a-4fa3-865a-f43b10fb3b5a" class="">1) 학습해야겠다고 인지하는 것 필요</p><p id="b87155c2-7117-42f4-afe2-f37de9c5f2e7" class="">2) 데이터 베이스 구축 (변경되는 환경에 맞춰서)</p><p id="f4d3e4e0-58c8-4163-9a94-08c06625ae43" class="">3) 바뀐 DB에 맞게 NN 구성 </p><p id="0739ca26-f02a-409d-8786-cf7ca60c20fc" class="">위 3단계의 학습 자동화 시스템이 구성되어야 사용가능한 인공지능 모델이 완성된다.</p></details></li></ul><p id="894ec86f-9282-4058-95c7-28f46a691023" class="">
+</p><ul id="b91406ab-bf56-4546-814b-f25618744b41" class="toggle"><li><details open=""><summary><mark class="highlight-orange"><strong>김재원 엘리스 대표</strong></mark></summary><ul id="2a3dc16a-c326-4921-b6ed-3e3fafe9054d" class="bulleted-list"><li>인공지능 교육? : 기초(수학, CS) 가 부족하고 열매(결과)만을 배우는 과정이 많아지고있다.<p id="78c7b642-6789-4a12-a389-e8d8069c9e4b" class=""><strong><mark class="highlight-red">적용점 : 그러니 기초도 중요하다고 볼 수 있다. 머신러닝 공부 &amp; 수학,CS 공부 &amp;백엔드</mark></strong></p></li></ul></details></li></ul><p id="d9c31701-9a31-44ec-afb1-3c0a83c00f60" class="">
+</p><ul id="d85516a6-9224-4717-bf44-81bc6e481546" class="toggle"><li><details open=""><summary><strong><mark class="highlight-orange">김재완 삼성디스플레이 상무</mark></strong></summary><p id="363b1d29-e98f-4c11-98f5-2670b3e13d6c" class="">삼디플 AI 인증 제도 도입 , 경영  환경 안전에서 AI를 통한 혁신하고싶어함</p><p id="5b44a8f9-1335-41d8-8973-bd942594aa7a" class="">공정 파라미터를 조정해서 효율 극대화하는 스마트 팩토리로 가고자함</p><p id="d3d3302b-bafb-4d0c-97d9-82767442bbf6" class="">1) 공정 고장 자동 감지</p><p id="7277806c-fb91-45ae-b325-91a2ed9fadbf" class="">2) 불량 유발하는 설비 자동 감지</p><p id="6d385add-9010-4ab7-89d9-a8ef08c3c3bd" class="">3) 설비가 불량 유발하기 전 사전 조치</p><p id="75bcc469-1863-4935-aa4e-ed724eef1720" class="">→ 제조업에 관심이 많이 부족, 많이들 진출해주셔서 2단계 개발에 기여해주시길 부탁드립니다.</p></details></li></ul></div></article></body></html>
